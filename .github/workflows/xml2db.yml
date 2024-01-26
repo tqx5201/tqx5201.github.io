@@ -1,0 +1,19 @@
+name: 自动xml2db
+
+on:
+  #push:
+    #branches:
+      #- master
+  schedule:
+    - cron: 0 0,22 * * *
+  #workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 查看网页源码
+        run: |
+          wget -O - http://epg.stncp.hz.cz/xml2db.php|cat
+          #wget -O - http://epg.stncp.hz.cz|cat
