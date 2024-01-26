@@ -1,8 +1,8 @@
 name: 获取酒店IPTV
 
 on:
-  push:
-    branches: [ "main" ]
+  #push:
+    #branches: [ "main" ]
   schedule:
     # * 定时执行，执行时间UTC+8小时
     - cron:  '0 18 * * *'
@@ -58,7 +58,7 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           now_time=$(date -u -d '+8 hour' '+%Y-%m-%d %H:%M:%S')
-          sed "2c * 更新时间: $now_time" README.md -i
+          #sed "2c * 更新时间: $now_time" README.md -i
           #git status
           #ls
           cd JiudianIPTV
