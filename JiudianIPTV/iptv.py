@@ -105,7 +105,7 @@ def save_results(results, filename):
             print(result)
 
 list = {"hebei", "beijing", "guangdong", "shanghai", "tianjin", "chongqing", "shanxi", "shaanxi", "liaoning", "jiangsu", "zhejiang", "anhui", "fujian", "jiangxi", "shandong", "henan", "hubei", "hunan"}
-list = {"tianjin", "hunan", "sichuan"}
+list = {"hunan", "sichuan"}
 
 all_file_contents = []
 fofa = 'https://fofa.info/result?qbase64='
