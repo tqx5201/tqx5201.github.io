@@ -177,7 +177,7 @@ class Spider(Spider):  # 元类 默认的元类 type
 		result = {}
 		return result
 
-	def playerContent(self, flag, pid, vipFlags):
+	def playerContent2(self, flag, pid, vipFlags):
 		result = {}
 		url = f"https://vdn.apps.cntv.cn/api/getHttpVideoInfo.do?pid={pid}"
 		data = self.fetch(url, headers=self.header, timeout=10).json()
@@ -188,6 +188,32 @@ class Spider(Spider):  # 元类 默认的元类 type
 		result["header"] = ''
 		return result
 
+	def playerContent(self,flag,id,vipFlags):
+		result = {}
+		url = "https://vdn.apps.cntv.cn/api/getHttpVideoInfo.do?pid={0}".format(id)
+		jo = self.fetch(url,headers=self.header).json()
+		link = jo['hls_url'].strip()
+		rsp = self.fetch(link,headers=self.header)
+		content = rsp.text.strip()
+		arr = content.split('\n')
+		urlPrefix = self.regStr(link,'(http[s]?://[a-zA-z0-9.]+)/')
+
+		subUrl = arr[-1].split('/')
+		subUrl[3] = '1200'
+		subUrl[-1] = '1200.m3u8'
+		hdUrl = urlPrefix + '/'.join(subUrl)
+
+		url = urlPrefix + arr[-1]
+
+		hdRsp = self.fetch(hdUrl,headers=self.header)
+		if hdRsp.status_code == 200:
+			url = hdUrl
+
+		result["parse"] = 0
+		result["playUrl"] = ''
+		result["url"] = url
+		result["header"] = ''
+		return result
 	config = {
 		"filter": {"CCTV": [{"key": "cid", "name": "频道", "value": [{"n": "全部", "v": ""}, {"n": "CCTV-1综合", "v": "EPGC1386744804340101"}, {"n": "CCTV-2财经", "v": "EPGC1386744804340102"}, {"n": "CCTV-3综艺", "v": "EPGC1386744804340103"}, {"n": "CCTV-4中文国际", "v": "EPGC1386744804340104"}, {"n": "CCTV-5体育", "v": "EPGC1386744804340107"}, {"n": "CCTV-6电影", "v": "EPGC1386744804340108"}, {"n": "CCTV-7国防军事", "v": "EPGC1386744804340109"}, {"n": "CCTV-8电视剧", "v": "EPGC1386744804340110"}, {"n": "CCTV-9纪录", "v": "EPGC1386744804340112"}, {"n": "CCTV-10科教", "v": "EPGC1386744804340113"}, {"n": "CCTV-11戏曲", "v": "EPGC1386744804340114"}, {"n": "CCTV-12社会与法", "v": "EPGC1386744804340115"}, {"n": "CCTV-13新闻", "v": "EPGC1386744804340116"}, {"n": "CCTV-14少儿", "v": "EPGC1386744804340117"}, {"n": "CCTV-15音乐", "v": "EPGC1386744804340118"}, {"n": "CCTV-16奥林匹克", "v": "EPGC1634630207058998"}, {"n": "CCTV-17农业农村", "v": "EPGC1563932742616872"}, {"n": "CCTV-5+体育赛事", "v": "EPGC1468294755566101"}]}, {"key": "fc", "name": "分类", "value": [{"n": "全部", "v": ""}, {"n": "新闻", "v": "新闻"}, {"n": "体育", "v": "体育"}, {"n": "综艺", "v": "综艺"}, {"n": "健康", "v": "健康"}, {"n": "生活", "v": "生活"}, {"n": "科教", "v": "科教"}, {"n": "经济", "v": "经济"}, {"n": "农业", "v": "农业"}, {"n": "法治", "v": "法治"}, {"n": "军事", "v": "军事"}, {"n": "少儿", "v": "少儿"}, {"n": "动画", "v": "动画"}, {"n": "纪实", "v": "纪实"}, {"n": "戏曲", "v": "戏曲"}, {"n": "音乐", "v": "音乐"}, {"n": "影视", "v": "影视"}]}, {"key": "fl", "name": "字母", "value": [{"n": "全部", "v": ""}, {"n": "A", "v": "A"}, {"n": "B", "v": "B"}, {"n": "C", "v": "C"}, {"n": "D", "v": "D"}, {"n": "E", "v": "E"}, {"n": "F", "v": "F"}, {"n": "G", "v": "G"}, {"n": "H", "v": "H"}, {"n": "I", "v": "I"}, {"n": "J", "v": "J"}, {"n": "K", "v": "K"}, {"n": "L", "v": "L"}, {"n": "M", "v": "M"}, {"n": "N", "v": "N"}, {"n": "O", "v": "O"}, {"n": "P", "v": "P"}, {"n": "Q", "v": "Q"}, {"n": "R", "v": "R"}, {"n": "S", "v": "S"}, {"n": "T", "v": "T"}, {"n": "U", "v": "U"}, {"n": "V", "v": "V"}, {"n": "W", "v": "W"}, {"n": "X", "v": "X"}, {"n": "Y", "v": "Y"}, {"n": "Z", "v": "Z"}]}, {"key": "month", "name": "月份", "value": [{"n": "全部", "v": ""}, {"n": "12", "v": "12"}, {"n": "11", "v": "11"}, {"n": "10", "v": "10"}, {"n": "09", "v": "09"}, {"n": "08", "v": "08"}, {"n": "07", "v": "07"}, {"n": "06", "v": "06"}, {"n": "05", "v": "05"}, {"n": "04", "v": "04"}, {"n": "03", "v": "03"}, {"n": "02", "v": "02"}, {"n": "01", "v": "01"}]}]}
 	}
