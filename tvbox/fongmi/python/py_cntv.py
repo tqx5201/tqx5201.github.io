@@ -226,6 +226,15 @@ class Spider(Spider):  # 元类 默认的元类 type
 
 	def playerContent(self,flag,id,vipFlags):
 		result = {}
+		result["parse"] = 0
+		result["playUrl"] = ''
+		result["url"] = "https://hls.cntv.lxdns.com/asp/hls/2000/0303000a/3/default/"+id+"/2000.m3u8"
+		result["header"] = ''
+		return result
+
+
+
+		
 		url = "https://vdn.apps.cntv.cn/api/getHttpVideoInfo.do?pid={0}".format(id)
 		jo = self.fetch(url,headers=self.header).json()
 		link = jo['hls_url'].strip()
