@@ -2,8 +2,20 @@
     "spider": "http://fm.t4tv.hz.cz/jar/custom_spider.jar",
     "wallpaper": "http://饭太硬.top/深色壁纸/api.php",
     "sites": [
-        {"key":"Bili","name":"🅱哔哔┃合集","type": 3,"api": "csp_Bili","style":{"type":"rect","ratio":1.597},"searchable":1,"quickSearch":0,"changeable":0,"ext":"https://agit.ai/fantaiying/fty/raw/branch/master/ext/bilibili.json"},
         {
+            "key":"Bili",
+            "name":"🅱哔哔┃合集",
+            "type": 3,
+            "api": "csp_Bili",
+            "style":{
+                "type":"rect",
+                "ratio":1.597
+            },
+            "searchable":1,
+            "quickSearch":0,
+            "changeable":0,
+            "ext":"https://agit.ai/fantaiying/fty/raw/branch/master/ext/bilibili.json"
+        }, {
             "key": "py_ali",
             "name": "首页",
             "type": 3,
