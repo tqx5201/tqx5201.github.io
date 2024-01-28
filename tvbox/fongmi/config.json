@@ -104,6 +104,42 @@
             "searchable": 1,
             "quickSearch": 1,
             "filterable": 1
+        }, {
+            "key": "易搜",
+            "name": "易搜",
+            "type": 3,
+            "api": "csp_YiSo",
+            "searchable": 1,
+            "filterable": 0,
+            "changeable": 0,
+            "ext": "http://stncp.top/tvbox/alitoken.txt"
+        }, {
+            "key": "盤搜",
+            "name": "盤搜",
+            "type": 3,
+            "api": "csp_PanSou",
+            "searchable": 1,
+            "filterable": 0,
+            "changeable": 0,
+            "ext": "http://stncp.top/tvbox/alitoken.txt"
+        }, {
+            "key": "UP雲搜",
+            "name": "UP雲搜",
+            "type": 3,
+            "api": "csp_UpYun",
+            "searchable": 1,
+            "filterable": 0,
+            "changeable": 0,
+            "ext": "http://stncp.top/tvbox/alitoken.txt"
+        }, {
+            "key": "找資源",
+            "name": "找資源",
+            "type": 3,
+            "api": "csp_Zhaozy",
+            "searchable": 1,
+            "filterable": 0,
+            "changeable": 0,
+            "ext": "http://stncp.top/tvbox/alitoken.txt$$$tqx5201$$$123456"
         }
     ],
     "parses": [{
