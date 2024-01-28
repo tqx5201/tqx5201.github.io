@@ -51,6 +51,10 @@
             "searchable": 0,
             "quickSearch": 0,
             "filterable": 1,
+            "style":{
+                "type":"rect",
+                "ratio":1.597
+            },
             "ext": {
                 "url": "https://github.stncp.top/tvbox/fongmi/ext/yqk.json"
             }
