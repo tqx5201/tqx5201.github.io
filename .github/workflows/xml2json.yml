@@ -55,7 +55,7 @@ jobs:
 
       - name: xml to json
         if: ${{ env.isDiff }}
-        working-directory: epg
+        #working-directory: epg
         run: |
           pwd
           cd ../
