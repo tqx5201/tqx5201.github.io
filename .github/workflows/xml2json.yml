@@ -55,6 +55,9 @@ jobs:
         working-directory: epg
         run: |
           pwd
+          cd ../
+          echo '到../'
+          pwd
           ls
           mv -f ../e.xml ./xml/e.xml
           #pip3 install -r requirements.txt
