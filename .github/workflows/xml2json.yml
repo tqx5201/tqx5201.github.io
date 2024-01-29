@@ -22,7 +22,6 @@ jobs:
 
     steps:
       - name: download files
-        working-directory: epg
         run: |
           #wget https://raw.bgithub.xyz/${{ github.repository }}/${{ matrix.branch }}/epg/md5.txt -O md5.txt
           url="${{ matrix.url }}"
@@ -60,7 +59,7 @@ jobs:
         working-directory: epg
         run: |
           ls
-          #mv -f ../e.xml ./epg/e.xml
+          mv -f ../e.xml ./epg/e.xml
           #pip3 install -r requirements.txt
           python3 xml2json.py
 
