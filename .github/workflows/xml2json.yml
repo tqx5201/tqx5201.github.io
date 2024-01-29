@@ -55,11 +55,9 @@ jobs:
         working-directory: epg
         run: |
           pwd
-          cd ../
-          echo '到../'
-          pwd
           ls
-          mv -f ../e.xml ./xml/e.xml
+          mv -f ../e.xml ./epg/e.xml
+          pwd ls
           #pip3 install -r requirements.txt
           python3 xml2json.py
           
