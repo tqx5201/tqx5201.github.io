@@ -58,10 +58,15 @@ jobs:
         if: ${{ env.isDiff }}
         working-directory: epg
         run: |
+          cd "../"
+          echo "到上级目录"
           pwd
           ls
-          mv -f ../e.xml ./e.xml
+          cd "epg"
+          echo "到epg"
+          ls
+          #mv -f ../e.xml ./e.xml
           pwd ls
           #pip3 install -r requirements.txt
-          python3 xml2json.py
+          #python3 xml2json.py
           
