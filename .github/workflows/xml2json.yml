@@ -58,6 +58,8 @@ jobs:
         run: |
           mv -f ../e.xml ./epg/e.xml
           #pip3 install -r requirements.txt
+          cd epg
+          ls
           python3 xml2json.py
           ls
           
