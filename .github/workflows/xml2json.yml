@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: download files
         run: |
-          wget https://raw.bgithub.xyz/${{ github.repository }}/${{ matrix.branch }}/epg/md5.txt -O md5.txt
+          wget https://raw.github.com/${{ github.repository }}/${{ matrix.branch }}/epg/md5.txt -O md5.txt
           url="${{ matrix.url }}"
           if [[ "$url" == *".gz" ]]; then
             echo "url is end with gz"
