@@ -46,7 +46,7 @@ for child in root:
 
 
     if child.tag=='programme':
-        if child.attrib['channel']!=channel_id or child.attrib['start'][0:8]!=date:
+        if child.attrib['channel']!=channel_id or child.attrib['start'][0:4]+"-"+child.attrib['start'][4:6]+"-"+child.attrib['start'][6:8]!=date:
             epg={}
             epg['date']=date
             epg['name']=name
