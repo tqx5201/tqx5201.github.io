@@ -46,17 +46,21 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
         if: ${{ env.isDiff }}
+        #with:
+          #ref: ${{ matrix.branch }}
+          #path: epg
         with:
-          ref: ${{ matrix.branch }}
-          path: epg
-
+            sparse-checkout: |
+                .github
+                epg
+                
       - name: xml to json
         if: ${{ env.isDiff }}
         working-directory: epg
         run: |
           pwd
           ls
-          mv -f ../e.xml ./epg/e.xml
+          mv -f ../e.xml ./e.xml
           pwd ls
           #pip3 install -r requirements.txt
           python3 xml2json.py
