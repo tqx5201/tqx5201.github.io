@@ -58,6 +58,8 @@ jobs:
         #working-directory: epg
         run: |
           pwd
+          ls
+          echo 'cd ../'
           cd ../
           pwd
           ls
