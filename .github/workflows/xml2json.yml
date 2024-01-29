@@ -50,7 +50,6 @@ jobs:
           ref: ${{ matrix.branch }}
           #path: epg
           sparse-checkout: |
-            .github
             epg
         
 
