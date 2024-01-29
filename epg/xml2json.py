@@ -49,8 +49,8 @@ for child in root:
         if child.attrib['channel']!=channel_id or child.attrib['start'][0:4]+"-"+child.attrib['start'][4:6]+"-"+child.attrib['start'][6:8]!=date:
             epg={}
             epg['date']=date
-            epg['name']=name
-            epg['data']=programme_info
+            epg['channel_name']=name
+            epg['epg_data']=programme_info
             write('./json/'+date+'/'+name+'.json',json.dumps(epg,ensure_ascii=False))
             programme_info=[]
 
