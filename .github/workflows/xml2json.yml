@@ -36,6 +36,8 @@ jobs:
 
       - name: check md5
         run: |
+          pwd
+          ls
           md5=$(md5sum ./e.xml | awk '{print $1}')
           if ! grep -q "$md5" ./md5.txt; then
             echo "isDiff=$md5" >> $GITHUB_ENV
@@ -46,11 +48,11 @@ jobs:
         if: ${{ env.isDiff }}
         with:
           ref: ${{ matrix.branch }}
-          path: ${{ github.repository }}
+          path: epg
 
       - name: xml to json
         if: ${{ env.isDiff }}
-        working-directory: ${{ github.repository }}
+        working-directory: epg
         run: |
           pwd
           ls
