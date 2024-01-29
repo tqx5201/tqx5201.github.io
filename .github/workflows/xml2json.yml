@@ -47,23 +47,17 @@ jobs:
         uses: actions/checkout@v4
         if: ${{ env.isDiff }}
         with:
-          #ref: ${{ matrix.branch }}
-          #path: epg
-          sparse-checkout: |
-            epg/
+          ref: ${{ matrix.branch }}
+          path: epg
+          #sparse-checkout: |
+            #epg/
                 
       - name: xml to json
         if: ${{ env.isDiff }}
         working-directory: epg
         run: |
-          cd "../"
-          echo "到上级目录"
-          pwd
-          ls
-          cd "epg"
-          echo "到epg"
-          ls
-          #mv -f ../e.xml ./e.xml
+          mv -f ../e.xml ./epg/epg/e.xml
+          cd epg
           pwd ls
           #pip3 install -r requirements.txt
           #python3 xml2json.py
