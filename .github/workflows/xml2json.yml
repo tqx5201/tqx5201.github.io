@@ -21,7 +21,7 @@ jobs:
     steps:
       - name: download files
         run: |
-          wget https://raw.githubusercontent.com/${{ github.repository }}/${{ matrix.branch }}/epg/md5.txt -O md5.txt
+          wget https://raw.bgithub.xyz/${{ github.repository }}/${{ matrix.branch }}/epg/md5.txt -O md5.txt
           url="${{ matrix.url }}"
           if [[ "$url" == *".gz" ]]; then
             echo "url is end with gz"
@@ -51,7 +51,7 @@ jobs:
         working-directory: epg
         run: |
           mv -f ../e.xml ./epg/e.xml
-          pip3 install -r requirements.txt
+          #pip3 install -r requirements.txt
           python3 xml2json.py
 
       - name: Upload a Build Artifact
