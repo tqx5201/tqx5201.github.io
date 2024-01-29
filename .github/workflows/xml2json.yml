@@ -46,13 +46,12 @@ jobs:
       - name: checkout code
         uses: actions/checkout@v4
         if: ${{ env.isDiff }}
-        #with:
-          #ref: ${{ matrix.branch }}
-          #path: epg
         with:
-            sparse-checkout: |
-                .github
-                epg
+          ref: ${{ matrix.branch }}
+          path: epg
+        #with:
+            #sparse-checkout: |
+                #epg
                 
       - name: xml to json
         if: ${{ env.isDiff }}
