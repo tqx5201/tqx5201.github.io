@@ -15,13 +15,13 @@ jobs:
         include:
           - url: https://epg.112114.xyz/pp.xml.gz
             branch: main
-          - url: http://epg.51zmt.top:8000/e.xml
-            branch: master
+          #- url: http://epg.51zmt.top:8000/e.xml
+            #branch: master
 
     steps:
       - name: download files
         run: |
-          wget https://raw.githubusercontent.com/${{ github.repository }}/${{ matrix.branch }}/epg/md5.txt -O md5.txt
+          wget https://raw.bgithub.xyz/${{ github.repository }}/${{ matrix.branch }}/epg/md5.txt -O md5.txt
           url="${{ matrix.url }}"
           if [[ "$url" == *".gz" ]]; then
             echo "url is end with gz"
@@ -50,7 +50,7 @@ jobs:
         if: ${{ env.isDiff }}
         working-directory: epg
         run: |
-          mv -f ../e.xml ./xml/e.xml
+          mv -f ../e.xml ./epg/e.xml
           pip3 install -r requirements.txt
           python3 xml2json.py
 
@@ -65,8 +65,8 @@ jobs:
         working-directory: epg
         run: |
           now_date=$(date -u -d '+8 hour' '+%Y-%m-%d')
-          cp -f ./xml/e.xml ./xml/e_$now_date.xml
-          mv -f ./json/e.json ./json/e_$now_date.json
+          cp -f ./epg/e.xml ./epg/e_$now_date.xml
+          #mv -f ./json/e.json ./json/e_$now_date.json
           echo "${{ env.isDiff }}" > ./md5.txt
 
       - name: Commit
