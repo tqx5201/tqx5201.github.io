@@ -35,7 +35,7 @@ root=tree.getroot()
 channel_info={}
 programme_info=[]
 channel_id='0'
-date='20240101'
+date='2024-01-01'
 name=''
 for child in root:
     if child.tag=='channel':
@@ -55,7 +55,7 @@ for child in root:
             programme_info=[]
 
             channel_id=child.attrib['channel']
-            date=child.attrib['start'][0:8]
+            date=child.attrib['start'][0:4]+"-"+child.attrib['start'][4:6]+"-"+child.attrib['start'][6:8]
             name=channel_info['ch'+channel_id]
 
             
