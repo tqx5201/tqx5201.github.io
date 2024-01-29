@@ -1,6 +1,8 @@
 name: xml2json
 
 on:
+  push:
+    branches: [ "main" ]
   #schedule:
     #- cron: 0 4,10,16,22 * * *
     #- cron: 36 15,16 * * *
