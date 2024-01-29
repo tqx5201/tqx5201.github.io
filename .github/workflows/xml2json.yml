@@ -52,7 +52,7 @@ jobs:
         if: ${{ env.isDiff }}
         working-directory: epg
         run: |
-          mv -f ../e.xml ./epg/e.xml
+          #mv -f ../e.xml ./epg/e.xml
           #pip3 install -r requirements.txt
           python3 epg/xml2json.py
 
