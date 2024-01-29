@@ -61,7 +61,7 @@ jobs:
           ls
           #mv -f ../e.xml ./epg/e.xml
           #pip3 install -r requirements.txt
-          python3 epg/xml2json.py
+          python3 xml2json.py
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.0.0
