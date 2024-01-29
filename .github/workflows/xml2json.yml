@@ -62,7 +62,13 @@ jobs:
           ls
           python3 xml2json.py
           ls
-     
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: xml2json
+          path: ${{ github.workspace }}/epg/
+          
       - name: 提交更改
         run: |
           git config --local user.name "github-actions[bot]"
