@@ -33,6 +33,7 @@ jobs:
             echo "url is not end with gz"
             wget $url -O e.xml
           fi
+          pwd
           ls
 
       - name: check md5
