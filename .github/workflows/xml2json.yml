@@ -17,13 +17,13 @@ jobs:
         include:
           - url: https://epg.112114.xyz/pp.xml.gz
             branch: main
-          #- url: http://epg.51zmt.top:8000/e.xml
-            #branch: master
+          - url: http://epg.51zmt.top:8000/e.xml
+            branch: master
 
     steps:
       - name: download files
         run: |
-          #wget https://raw.bgithub.xyz/${{ github.repository }}/${{ matrix.branch }}/epg/md5.txt -O md5.txt
+          wget https://raw.githubusercontent.com/${{ github.repository }}/${{ matrix.branch }}/md5.txt -O md5.txt
           url="${{ matrix.url }}"
           if [[ "$url" == *".gz" ]]; then
             echo "url is end with gz"
@@ -33,8 +33,6 @@ jobs:
             echo "url is not end with gz"
             wget $url -O e.xml
           fi
-          pwd
-          ls
 
       - name: check md5
         run: |
@@ -48,51 +46,14 @@ jobs:
         if: ${{ env.isDiff }}
         with:
           ref: ${{ matrix.branch }}
-          #path: epg
-          sparse-checkout: |
-            epg
-        
+          path: epg
 
       - name: xml to json
         if: ${{ env.isDiff }}
-        #working-directory: epg
+        working-directory: epg
         run: |
-          pwd
           ls
-          #echo 'cd ../'
-          #cd ../
-          #pwd
-          #ls
-          cd epg
-          pwd
-          ls
-          mv -f ../e.xml ./epg/e.xml
+          mv -f ../e.xml ./xml/e.xml
           #pip3 install -r requirements.txt
           python3 xml2json.py
-
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.0.0
-        with:
-          name: 获取json
-          path: ${{ github.workspace }}/epg/
           
-      - name: move file
-        if: ${{ env.isDiff }}
-        working-directory: epg
-        run: |
-          now_date=$(date -u -d '+8 hour' '+%Y-%m-%d')
-          cp -f ./epg/e.xml ./epg/e_$now_date.xml
-          #mv -f ./json/e.json ./json/e_$now_date.json
-          echo "${{ env.isDiff }}" > ./md5.txt
-
-      - name: Commit
-        if: ${{ env.isDiff }}
-        working-directory: epg
-        run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          now_time=$(date -u -d '+8 hour' '+%Y-%m-%d %H:%M:%S')
-          sed "2c * 更新时间: $now_time" README.md -i
-          git add --all
-          git commit -m "$now_time"
-          git push -f origin ${{ matrix.branch }}
