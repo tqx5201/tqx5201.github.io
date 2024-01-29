@@ -71,6 +71,7 @@ jobs:
           
       - name: 提交更改
         run: |
+          pwd
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           now_time=$(date -u -d '+8 hour' '+%Y-%m-%d %H:%M:%S')
