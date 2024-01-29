@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: download files
         run: |
-          wget https://raw.bgithub.xyz/${{ github.repository }}/${{ matrix.branch }}/md5.txt -O md5.txt
+          #wget https://raw.bgithub.xyz/${{ github.repository }}/${{ matrix.branch }}/md5.txt -O md5.txt
           url="${{ matrix.url }}"
           if [[ "$url" == *".gz" ]]; then
             echo "url is end with gz"
@@ -34,12 +34,12 @@ jobs:
             wget $url -O e.xml
           fi
 
-      #- name: check md5
-        #run: |
-          #md5=$(md5sum ./e.xml | awk '{print $1}')
-          #if ! grep -q "$md5" ./md5.txt; then
-            #echo "isDiff=$md5" >> $GITHUB_ENV
-          #fi
+      - name: check md5
+        run: |
+          md5=$(md5sum ./e.xml | awk '{print $1}')
+          if ! grep -q "$md5" ./md5.txt; then
+            echo "isDiff=$md5" >> $GITHUB_ENV
+          fi
 
       - name: checkout code
         uses: actions/checkout@v4
