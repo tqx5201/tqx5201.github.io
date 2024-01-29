@@ -62,4 +62,16 @@ jobs:
           ls
           python3 xml2json.py
           ls
-          
+     
+      - name: 提交更改
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          now_time=$(date -u -d '+8 hour' '+%Y-%m-%d %H:%M:%S')
+          #sed "2c * 更新时间: $now_time" README.md -i
+          #git status
+          #ls
+          git add .
+          git commit *.json -m "$now_time"
+          #git pull --rebase
+          git push -f
