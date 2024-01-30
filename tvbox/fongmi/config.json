@@ -3,30 +3,14 @@
     "wallpaper": "http://饭太硬.top/深色壁纸/api.php",
     "sites": [
         {
-            "key":"Bili",
-            "name":"🅱哔哔┃合集",
-            "type": 3,
-            "api": "csp_Bili",
-            "style":{
-                "type":"rect",
-                "ratio":1.597
-            },
+            "key":"MIGU",
+            "name":"咪咕视频",
+            "type": 1,
+            "api": "http://stncp.top/tomac10/migu.php",
             "searchable":1,
             "quickSearch":0,
             "changeable":0,
             "ext":"https://agit.ai/fantaiying/fty/raw/branch/master/ext/bilibili.json"
-        }, {
-            "key": "py_ali",
-            "name": "首页",
-            "type": 3,
-            "api": "https://github.stncp.top/tvbox/fongmi/python/py_ali.py",
-            "searchable": 1,
-            "quickSearch": 1,
-            "filterable": 1,
-            "ext": {
-                "token": "https://github.stncp.top/tvbox/alitoken.txt",
-                "thread": "10"
-            }
         }, {
             "key": "1369影院",
             "name": "1369影院",
