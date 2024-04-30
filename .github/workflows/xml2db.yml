@@ -16,4 +16,4 @@ jobs:
       - name: 查看网页源码
         run: |
           #wget -O - http://epg.stncp.hz.cz/xml2db.php|cat
-          wget -O - http://www.stncp.top/epg/xml2db.php|cat
+          wget -O -d --waitretry=1 --tries=1 --timeout=10 - http://www.stncp.top/epg/xml2db.php|cat
