@@ -16,5 +16,4 @@ jobs:
       - name: 查看网页源码
         run: |
           #wget -O - http://epg.stncp.hz.cz/xml2db.php|cat
-          #wget -O - http://www.stncp.top/epg/xml2db.php|cat
-          wget -o - https://www.baidu.com|cat
+          wget -O - http://www.stncp.top/epg/xml2db.php|cat
