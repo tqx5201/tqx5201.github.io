@@ -1,4 +1,4 @@
-name: 自动xml2db
+name: wget取网页
 
 on:
   #push:
