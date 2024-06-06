@@ -5,7 +5,7 @@ on:
     #branches:
       #- master
   schedule:
-    - cron: 0 0,22 * * *
+    - cron: 0 7 * * *
   workflow_dispatch:
 
 jobs:
@@ -19,4 +19,20 @@ jobs:
           #wget --post-data="type=&url=http%3A%2F%2Fstncp.top%2Fepg%2Fxml2db.php" http://tool.wdphp.com/pagecode/index.html|cat
           #wget --header="Referer:http://tool.wdphp.com/pagecode.html" --post-data="type=&url=http%3A%2F%2Fstncp.top%2Fepg%2Fxml2db.php" http://tool.wdphp.com/pagecode/index.html|cat
           #wget -d --waitretry=1 --tries=1 --timeout=10 http://www.stncp.top/epg/xml2db.php|cat
-          wget -O - http://stncp.top/epg/xml2db.php|cat
+          #wget -O - http://stncp.top/epg/xml2db.php|cat
+            
+            
+            
+            curl 'http://coolaf.com/tool/ajaxgp' \
+            -H 'Connection: keep-alive' \
+            -H 'Accept: application/json, text/javascript, */*; q=0.01' \
+            -H 'X-Requested-With: XMLHttpRequest' \
+            -H 'User-Agent: Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36' \
+            -H 'Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryGmjrgFyM2J8cV8ep' \
+            -H 'Origin: http://coolaf.com' \
+            -H 'Referer: http://coolaf.com/' \
+            -H 'Accept-Language: zh-CN,zh;q=0.9' \
+            -H 'Cookie: iris.language=zh; Hm_lvt_18f18be6e58f13d87192835c8c15fdca=1713943817,1714459011; Hm_lpvt_18f18be6e58f13d87192835c8c15fdca=1714459011; _ga=GA1.2.1202326519.1709104231; _gid=GA1.2.164249865.1714459011; _gat_gtag_UA_75491253_1=1; urladd=; __gads=ID=f9492765cfa02a09:T=1713943798:RT=1714458990:S=ALNI_MaWAgbLxI5Da_hYSinb5yRlslCaeQ; __gpi=UID=00000df88ae03921:T=1713943798:RT=1714458990:S=ALNI_MaYT8aUeKWLMfAPfZ2gZGuVYVofTw; __eoi=ID=359eb1c36534c50d:T=1713943798:RT=1714458990:S=AA-AfjZV7SqG1vGvEefeOMyxSRTq; _ga_G59JK03TFH=GS1.1.1714459011.3.0.1714459014.57.0.0' \
+            --data-binary $'------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="url"\r\n\r\nhttp://stncp.top/sdk/qiandao_tvzb.php\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="seltype"\r\n\r\nget\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="ck"\r\n\r\n\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="header"\r\n\r\n\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="parms"\r\n\r\n\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="proxy"\r\n\r\n\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="code"\r\n\r\nutf8\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="j"\r\n\r\n1\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep\r\nContent-Disposition: form-data; name="ct"\r\n\r\napplication/x-www-form-urlencoded\r\n------WebKitFormBoundaryGmjrgFyM2J8cV8ep--\r\n' \
+            --compressed \
+            --insecure
