@@ -15,10 +15,10 @@ jobs:
     steps:
       - name: 查看网页源码
         run: |
-          #wget -O - http://epg.stncp.hz.cz/xml2db.php|cat
+          #wget -O - http://stncp.top/epg//xml2db.php|cat
           #wget --post-data="type=&url=http%3A%2F%2Fstncp.top%2Fepg%2Fxml2db.php" http://tool.wdphp.com/pagecode/index.html|cat
           #wget --header="Referer:http://tool.wdphp.com/pagecode.html" --post-data="type=&url=http%3A%2F%2Fstncp.top%2Fepg%2Fxml2db.php" http://tool.wdphp.com/pagecode/index.html|cat
-          #wget -d --waitretry=1 --tries=1 --timeout=10 http://www.stncp.top/epg/xml2db.php|cat
+          wget -d --waitretry=1 --tries=1 --timeout=10 http://www.stncp.top/epg/xml2db.php|cat
 
 
           curl 'https://www.bejson.com/Bejson/Api/HttpRequest/curl_request' \
