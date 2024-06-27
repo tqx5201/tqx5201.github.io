@@ -3,12 +3,12 @@ name: 获取酒店IPTV
 on:
   #push:
     #branches: [ "main" ]
-  schedule:
+  #schedule:
     # * 定时执行，执行时间UTC+8小时
     #- cron:  '0 18 * * *'
     
     # 手动运行
-    workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   build:
