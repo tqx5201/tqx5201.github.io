@@ -39,8 +39,8 @@ menu = requests.get('https://api.zzzwb.com/v1?get=tg').json()
 loginip = requests.get('https://api.ipify.org?format=json').json()['ip']
 content += f"本次登录用户共： {user_num} 个\n登录时间：{time}\n登录IP：{loginip}"
 
-push = os.getenv('PUSH')
-
+#push = os.getenv('PUSH')
+push = "pushplus"
 def mail_push(url):
     data = {
         "body": content,
@@ -75,7 +75,7 @@ def telegram_push(message):
     response = requests.post(url, json=payload, headers=headers)
     if response.status_code != 200:
         print(f"发送消息到Telegram失败: {response.text}")
-def pushplus(self, token, title, content):
+def push_plus(self, token, title, content):
         assert type(token) == str, "Wrong type for pushplus token."
         content = content.replace("\n", "\n\n")
         payload = {
@@ -94,10 +94,12 @@ def pushplus(self, token, title, content):
             return -1
         return 0
 
-    
+pushplus_token = "980b5a94ec844de6b730e3c874532020"
 if push == "mail":
     mail_push('https://zzzwb.us.kg/test')
 elif push == "telegram":
     telegram_push(content)
+elif push == "pushplus":
+    push_push(pushplus_token, "serv00登录", content)
 else:
     print("推送失败，推送参数设置错误")
