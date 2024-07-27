@@ -24,7 +24,7 @@ def ssh_multiple_connections(hosts_info, command):
             print(f"用户：{username}，连接 {hostname} 时出错: {str(e)}")
     return users, hostnames
 
-ssh_info_str = os.getenv('SSH_INFO', '[]')
+ssh_info_str = os.getenv('SERV00_SSH_INFO', '[]')
 hosts_info = json.loads(ssh_info_str)
 
 command = 'whoami'
