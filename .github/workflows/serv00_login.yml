@@ -25,7 +25,7 @@ jobs:
       
       - name: Run Python script
         env:
-          SSH_INFO: ${{ secrets.SERV00_SSH_INFO }}
+          SERV00_SSH_INFO: ${{ secrets.SERV00_SSH_INFO }}
           PUSHPLUS_TOKEN: ${{ secrets.PUSHPLUS_TOKEN }}
           MAIL: ${{ secrets.MAIL }}
           PUSH: ${{ secrets.PUSH }}
