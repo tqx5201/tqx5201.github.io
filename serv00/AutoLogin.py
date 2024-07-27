@@ -77,7 +77,8 @@ def telegram_push(message):
     response = requests.post(url, json=payload, headers=headers)
     if response.status_code != 200:
         print(f"发送消息到Telegram失败: {response.text}")
-def push_plus(self, token, title, content):
+
+def push_plus(token, title, content):
         assert type(token) == str, "Wrong type for pushplus token."
         content = content.replace("\n", "\n\n")
         payload = {
