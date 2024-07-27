@@ -41,6 +41,8 @@ content += f"本次登录用户共： {user_num} 个\n登录时间：{time}\n登
 
 #push = os.getenv('PUSH')
 push = "pushplus"
+
+
 def mail_push(url):
     data = {
         "body": content,
@@ -100,6 +102,6 @@ if push == "mail":
 elif push == "telegram":
     telegram_push(content)
 elif push == "pushplus":
-    push_push(pushplus_token, "serv00登录", content)
+    push_plus(pushplus_token, "serv00登录", content)
 else:
     print("推送失败，推送参数设置错误")
