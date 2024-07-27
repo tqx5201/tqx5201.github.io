@@ -75,7 +75,26 @@ def telegram_push(message):
     response = requests.post(url, json=payload, headers=headers)
     if response.status_code != 200:
         print(f"发送消息到Telegram失败: {response.text}")
+def pushplus(self, token, title, content):
+        assert type(token) == str, "Wrong type for pushplus token."
+        content = content.replace("\n", "\n\n")
+        payload = {
+            'token': token,
+            "title": title,
+            "content": content,
+            "channel": "wechat",
+            "template": "markdown"
+        }
+        resp = requests.post("http://www.pushplus.plus/send", data=payload)
+        resp_json = resp.json()
+        if resp_json["code"] == 200:
+            print(f"[Pushplus]Send message to Pushplus successfully.")
+        if resp_json["code"] != 200:
+            print(f"[Pushplus][Send Message Response]{resp.text}")
+            return -1
+        return 0
 
+    
 if push == "mail":
     mail_push('https://zzzwb.us.kg/test')
 elif push == "telegram":
