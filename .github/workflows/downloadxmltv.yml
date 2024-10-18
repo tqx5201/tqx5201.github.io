@@ -1,0 +1,48 @@
+name: 获取epg.xml到github
+
+on:
+  watch:
+    types: [started]
+  schedule:
+    - cron: 0 0,22 * * *
+  workflow_dispatch:
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  get_xmltv:
+    runs-on: ubuntu-latest
+      
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: GetTime
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d %H:%M:%S')"
+
+    - name: 获取xml
+      run: |
+        cd epg
+        # 节目源
+        #rm -f EPG.xml && wget https://epg.112114.xyz/pp.xml -O EPG.xml
+        rm -f EPG_CN.xml && wget https://epg.pw/xmltv/epg_CN.xml -O EPG_CN.xml
+        rm -f EPG_TW.xml && wget https://epg.pw/xmltv/epg_TW.xml -O EPG_TW.xml
+        rm -f EPG_HK.xml && wget https://epg.pw/xmltv/epg_HK.xml -O EPG_HK.xml
+        
+        echo "Auto Update in ${{ steps.date.outputs.date }}" > README.md
+    
+    - name: Clean
+      #working-directory: epg
+      run: |
+        cd epg
+        git config --local user.email "actions@github.com"
+        git config --local user.name "GitHub Actions"
+        git checkout --orphan latest_branch
+        git add -A
+        git commit -am "${{ steps.date.outputs.date }}"
+        git branch -D main
+        git branch -m main
+    
+    - name: 推送更新
+      run: git push -f origin main
