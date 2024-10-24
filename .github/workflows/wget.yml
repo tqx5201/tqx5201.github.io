@@ -1,0 +1,22 @@
+name: wget取网页
+
+on:
+  #push:
+    #branches:
+      #- master
+  schedule:
+    - cron: 0 0 * * *
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 查看网页源码
+        run: |
+          #wget -O - http://stncp.top|cat --waitretry=1 --tries=1 --timeout=10
+          #wget --post-data="type=&url=http%3A%2F%2Fstncp.top%2Fepg%2Fxml2db.php" http://tool.wdphp.com/pagecode/index.html|cat
+          #wget --header="Referer:http://tool.wdphp.com/pagecode.html" --post-data="type=&url=http%3A%2F%2Fstncp.top%2Fepg%2Fxml2db.php" http://tool.wdphp.com/pagecode/index.html|cat
+          wget -d --waitretry=1 --tries=1 --timeout=10 http://www.stncp.top|cat
+          #wget -O - http://stncp.top/epg/xml2db.php|cat

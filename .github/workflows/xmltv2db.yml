@@ -1,0 +1,43 @@
+name: XMLTV2DB
+
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: "0 0,22 * * *"
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up php 7.4
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: xml2db
+        run: |
+          cd epg
+          ls -la
+          echo '开始处理epg'
+          php xml2db.php
+          echo '处理完成'
+          ls -la
+          #cp t.xml t.xml.gz ${{ github.workspace }}/epg
+          #cp -r data ${{ github.workspace }}/epg
+
+      - name: 提交更新
+        run: |
+          cd epg
+          ls -la
+          git config --global user.name 'suzukua_bot'
+          git config --global user.email 'suzukua_bot'
+          git add .
+          git commit -am "Automated build"
+          git push

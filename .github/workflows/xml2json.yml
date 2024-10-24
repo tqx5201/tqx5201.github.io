@@ -1,0 +1,85 @@
+name: xml2json
+
+on:
+  #push:
+    #branches: [ "main" ]
+  #schedule:
+    #- cron: 0 20 * * *
+    #- cron: 36 15,16 * * *
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - url: https://epg.112114.xyz/pp.xml.gz
+            branch: main
+          #- url: http://epg.51zmt.top:8000/e.xml
+            #branch: master
+
+    steps:
+      - name: download files
+        run: |
+          #wget https://raw.bgithub.xyz/${{ github.repository }}/${{ matrix.branch }}/md5.txt -O md5.txt
+          url="${{ matrix.url }}"
+          if [[ "$url" == *".gz" ]]; then
+            echo "url is end with gz"
+            wget $url -O e.xml.gz
+            gzip -df e.xml.gz
+          else
+            echo "url is not end with gz"
+            wget $url -O e.xml
+          fi
+
+      - name: check md5
+        run: |
+          pwd
+          ls
+          md5=$(md5sum ./e.xml | awk '{print $1}')
+          if ! grep -q "$md5" ./md5.txt; then
+            echo "isDiff=$md5" >> $GITHUB_ENV
+          fi
+
+      - name: checkout code
+        uses: actions/checkout@v4
+        if: ${{ env.isDiff }}
+        with:
+          ref: ${{ matrix.branch }}
+          path: epg
+          #sparse-checkout: |
+            #epg/
+                
+      - name: xml to json
+        if: ${{ env.isDiff }}
+        working-directory: epg
+        run: |
+          mv -f ../e.xml ./epg/e.xml
+          #pip3 install -r requirements.txt
+          cd epg
+          ls
+          python3 xml2json.py
+          ls
+        
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v4.0.0
+        with:
+          name: xml2json
+          path: ${{ github.workspace }}/epg/
+          
+      - name: 提交更改
+        working-directory: epg
+        run: |
+          pwd
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          now_time=$(date -u -d '+8 hour' '+%Y-%m-%d %H:%M:%S')
+          #sed "2c * 更新时间: $now_time" README.md -i
+          #git status
+          #ls
+          git add .
+          git commit *.json -m "$now_time"
+          #git pull --rebase
+          git push -f
